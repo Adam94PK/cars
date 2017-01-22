@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface CarDAO {
 
-    Boolean add(Car car);
-    Boolean update(Car car);
+    void add(Car car);
+    void update(Car car);
     List<Car> list();
     Car getById(Long id);
-    Boolean remove(Long id);
+    void remove(Long id);
 }

@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface TestRideDAO {
 
-    Boolean add(TestRide testRide);
-    Boolean update(TestRide testRide);
+    void add(TestRide testRide);
+    void update(TestRide testRide);
     List<TestRide> list();
     TestRide getById(Long id);
-    Boolean remove(Long id);
+    void remove(Long id);
 }

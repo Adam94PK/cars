@@ -33,17 +33,15 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public Boolean add(Car car) {
+    public void add(Car car) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(car);
-        return true;
     }
 
     @Override
-    public Boolean update(Car car) {
+    public void update(Car car) {
         Session session = sessionFactory.getCurrentSession();
         session.update(car);
-        return true;
     }
 
     @Override
@@ -59,9 +57,8 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public Boolean remove(Long id) {
+    public void remove(Long id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(getById(id));
-        return true;
     }
 }

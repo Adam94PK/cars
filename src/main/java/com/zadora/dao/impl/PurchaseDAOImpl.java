@@ -1,11 +1,10 @@
 package com.zadora.dao.impl;
 
-import com.zadora.dao.UserDAO;
-import com.zadora.dto.User;
+import com.zadora.dao.PurchaseDAO;
+import com.zadora.dto.Car;
+import com.zadora.dto.Purchase;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,37 +12,38 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by adam on 07.01.17.
+ * Created by adam on 20.01.2017.
  */
+
 @Repository
 @Transactional
-public class UserDAOImpl implements UserDAO {
+public class PurchaseDAOImpl implements PurchaseDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(User user) {
+    public void add(Purchase purchase) {
         Session session = sessionFactory.getCurrentSession();
-        session.persist(user);
+        session.persist(purchase);
     }
 
     @Override
-    public void update(User user) {
+    public void update(Purchase purchase) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(user);
+        session.update(purchase);
     }
 
     @Override
-    public List<User> list() {
+    public List<Purchase> list() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from User").list();
+        return session.createQuery("from Purchase").list();
     }
 
     @Override
-    public User getById(Long id) {
+    public Purchase getById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(User.class, id);
+        return session.get(Purchase.class, id);
     }
 
     @Override

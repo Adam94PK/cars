@@ -21,17 +21,15 @@ public class TestRideDAOImpl implements TestRideDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public Boolean add(TestRide testRide) {
+    public void add(TestRide testRide) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(testRide);
-        return true;
     }
 
     @Override
-    public Boolean update(TestRide testRide) {
+    public void update(TestRide testRide) {
         Session session = sessionFactory.getCurrentSession();
         session.update(testRide);
-        return true;
     }
 
     @Override
@@ -47,9 +45,8 @@ public class TestRideDAOImpl implements TestRideDAO {
     }
 
     @Override
-    public Boolean remove(Long id) {
+    public void remove(Long id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(getById(id));
-        return true;
     }
 }

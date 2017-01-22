@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface UserDAO {
 
-    Boolean add(User user);
-    Boolean update(User user);
+    void add(User user);
+    void update(User user);
     List<User> list();
     User getById(Long id);
-    Boolean remove(Long id);
+    void remove(Long id);
 
 }

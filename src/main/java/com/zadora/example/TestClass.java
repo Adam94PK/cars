@@ -35,7 +35,7 @@ public class TestClass {
         Car car = new Car();
         car.setMake("BMW");
         car.setModel("X5");
-        car.setPrice(500);
+        car.setPrice(500f);
         carDAO.add(car);
         TestRide testRide = new TestRide();
         testRide.setUser(userDAO.getById(1L));

@@ -4,6 +4,7 @@ package com.zadora.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,6 +83,7 @@ public class User {
     }
     public void setTestRides(List<TestRide> testRides) {
         this.testRides = testRides;
+        testRidesIds = new ArrayList<>();
         for(TestRide testRide : testRides){
             testRidesIds.add(testRide.getId());
         }

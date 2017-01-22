@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,13 +20,11 @@ public class Car {
     private String make;
     private String model;
     private Integer year;
-    private Integer price;
+    private Float price;
     private Boolean visible;
     private List<Photo> photos;
     private List<TestRide> testRides;
-    @Transient
     private List<Long> photosIds;
-    @Transient
     private List<Long> testRidesIds;
 
     public Car() {
@@ -35,6 +34,16 @@ public class Car {
         this.make = make;
         this.model = model;
     }
+
+    public Car(String vin, String make, String model, Integer year, Float price, Boolean visible) {
+        this.vin = vin;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.price = price;
+        this.visible = visible;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -72,10 +81,10 @@ public class Car {
         this.year = year;
     }
 
-    public Integer getPrice() {
+    public Float getPrice() {
         return price;
     }
-    public void setPrice(Integer price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -100,18 +109,19 @@ public class Car {
     }
     public void setTestRides(List<TestRide> testRides) {
         this.testRides = testRides;
+        testRidesIds = new ArrayList<>();
         for(TestRide testRide : testRides){
             testRidesIds.add(testRide.getId());
         }
     }
-
+    @Transient
     public List<Long> getPhotosIds() {
         return photosIds;
     }
     public void setPhotosIds(List<Long> photosIds) {
         this.photosIds = photosIds;
     }
-
+    @Transient
     public List<Long> getTestRidesIds() {
         return testRidesIds;
     }
