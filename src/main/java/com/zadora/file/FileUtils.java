@@ -45,17 +45,6 @@ public class FileUtils {
         return mimeType;
     }
 
-    public UserFile mapUserFileObject(MultipartFile file, User user) {
-        UserFile userFile = new UserFile();
-
-        userFile.setName(file.getOriginalFilename());
-        userFile.setExtension(this.getFileExtension(file.getOriginalFilename()));
-        userFile.setSize(file.getSize());
-        userFile.setUser(user);
-
-        return userFile;
-    }
-
     public String getFileExtension(String filename) {
         String[] fileArray = filename.split("\\.");
 

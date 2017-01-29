@@ -10,10 +10,11 @@ import java.io.*;
  */
 public class FileSaver {
     public static void saveFile(MultipartFile file, File filePath) {
+
         try {
 
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new
-                    FileOutputStream(filePath + "/" + file.getOriginalFilename()));
+                    FileOutputStream(filePath + "\\" + file.getOriginalFilename()));
 
             FileCopyUtils.copy(file.getInputStream(), bufferedOutputStream);
             bufferedOutputStream.close();
