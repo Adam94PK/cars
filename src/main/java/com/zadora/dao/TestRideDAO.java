@@ -1,6 +1,8 @@
 package com.zadora.dao;
 
 import com.zadora.dto.TestRide;
+import com.zadora.dto.User;
+import org.aspectj.weaver.ast.Test;
 
 import java.util.List;
 
@@ -9,9 +11,15 @@ import java.util.List;
  */
 public interface TestRideDAO {
 
-    void add(TestRide testRide);
-    void update(TestRide testRide);
+    Long add(TestRide testRide);
+
+    Long update(TestRide testRide);
+
     List<TestRide> list();
+
     TestRide getById(Long id);
+
     void remove(Long id);
+
+    List<TestRide> getTestRidesByUser(User user);
 }

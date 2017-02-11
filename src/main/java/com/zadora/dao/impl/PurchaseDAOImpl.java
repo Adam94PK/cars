@@ -23,15 +23,17 @@ public class PurchaseDAOImpl implements PurchaseDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(Purchase purchase) {
+    public Long add(Purchase purchase) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(purchase);
+        return purchase.getId();
     }
 
     @Override
-    public void update(Purchase purchase) {
+    public Long update(Purchase purchase) {
         Session session = sessionFactory.getCurrentSession();
         session.update(purchase);
+        return purchase.getId();
     }
 
     @Override

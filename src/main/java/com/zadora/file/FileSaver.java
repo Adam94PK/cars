@@ -12,7 +12,6 @@ public class FileSaver {
     public static void saveFile(MultipartFile file, File filePath) {
 
         try {
-
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new
                     FileOutputStream(filePath + "\\" + file.getOriginalFilename()));
 

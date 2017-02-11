@@ -33,15 +33,17 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public void add(Car car) {
+    public Long add(Car car) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(car);
+        return car.getId();
     }
 
     @Override
-    public void update(Car car) {
+    public Long update(Car car) {
         Session session = sessionFactory.getCurrentSession();
         session.update(car);
+        return car.getId();
     }
 
     @Override

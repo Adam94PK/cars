@@ -2,6 +2,7 @@ package com.zadora.dao.impl;
 
 import com.zadora.dao.TestRideDAO;
 import com.zadora.dto.TestRide;
+import com.zadora.dto.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +22,17 @@ public class TestRideDAOImpl implements TestRideDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(TestRide testRide) {
+    public Long add(TestRide testRide) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(testRide);
+        return testRide.getId();
     }
 
     @Override
-    public void update(TestRide testRide) {
+    public Long update(TestRide testRide) {
         Session session = sessionFactory.getCurrentSession();
         session.update(testRide);
+        return testRide.getId();
     }
 
     @Override
@@ -48,5 +51,12 @@ public class TestRideDAOImpl implements TestRideDAO {
     public void remove(Long id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(getById(id));
+    }
+
+    @Override
+    public List<TestRide> getTestRidesByUser(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        //TODO
+        return null;
     }
 }

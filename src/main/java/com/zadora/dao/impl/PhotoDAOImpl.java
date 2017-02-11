@@ -1,11 +1,9 @@
 package com.zadora.dao.impl;
 
-import com.zadora.dao.UserDAO;
-import com.zadora.dto.User;
+import com.zadora.dao.PhotoDAO;
+import com.zadora.dto.Photo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,39 +11,39 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by adam on 07.01.17.
+ * Created by adam on 06.02.2017.
  */
 @Repository
 @Transactional
-public class UserDAOImpl implements UserDAO {
+public class PhotoDAOImpl implements PhotoDAO {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
     @Override
-    public Long add(User user) {
+    public Long add(Photo photo) {
         Session session = sessionFactory.getCurrentSession();
-        session.persist(user);
-        return user.getResID();
+        session.persist(photo);
+        return photo.getId();
     }
 
     @Override
-    public Long update(User user) {
+    public Long update(Photo photo) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(user);
-        return user.getResID();
+        session.update(photo);
+        return photo.getId();
     }
 
     @Override
-    public List<User> list() {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from User").list();
+    public List<Photo> list() {
+        Session session= sessionFactory.getCurrentSession();
+        return session.createQuery("from Photo").list();
     }
 
     @Override
-    public User getById(Long id) {
+    public Photo getById(Long id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(User.class, id);
+        return session.get(Photo.class, id);
     }
 
     @Override

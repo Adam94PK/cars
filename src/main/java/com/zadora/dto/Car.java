@@ -23,16 +23,15 @@ public class Car {
     private Float price;
     private Boolean visible;
     private List<Photo> photos;
-    private List<TestRide> testRides;
-    private List<Long> photosIds;
-    private List<Long> testRidesIds;
-
-    public Car() {
-    }
+    private List<TestRide> testRides = new ArrayList<>();
+    private List<Long> testRidesIds = new ArrayList<>();
 
     public Car(String make, String model) {
         this.make = make;
         this.model = model;
+    }
+
+    public Car() {
     }
 
     public Car(String vin, String make, String model, Integer year, Float price, Boolean visible) {
@@ -42,6 +41,15 @@ public class Car {
         this.year = year;
         this.price = price;
         this.visible = visible;
+    }
+
+    public Car(String vin, String make, String model, String year, String price, String visible) {
+        this.vin = vin;
+        this.make = make;
+        this.model = model;
+        this.year = Integer.parseInt(year);
+        this.price = Float.parseFloat(price);
+        this.visible = Boolean.parseBoolean(visible);
     }
 
     @Id
@@ -94,7 +102,6 @@ public class Car {
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
-    @JsonIgnore
     @OneToMany(mappedBy = "car")
     public List<Photo> getPhotos() {
         return photos;
@@ -108,18 +115,13 @@ public class Car {
         return testRides;
     }
     public void setTestRides(List<TestRide> testRides) {
-        this.testRides = testRides;
+        if(testRides!= null) {
+            this.testRides = testRides;
+        }
         testRidesIds = new ArrayList<>();
         for(TestRide testRide : testRides){
             testRidesIds.add(testRide.getId());
         }
-    }
-    @Transient
-    public List<Long> getPhotosIds() {
-        return photosIds;
-    }
-    public void setPhotosIds(List<Long> photosIds) {
-        this.photosIds = photosIds;
     }
     @Transient
     public List<Long> getTestRidesIds() {

@@ -1,9 +1,10 @@
 package com.zadora.services;
 
 import com.zadora.dao.CarDAO;
+import com.zadora.dao.PhotoDAO;
 import com.zadora.dto.Car;
+import com.zadora.dto.Photo;
 import com.zadora.file.FileSaver;
-import com.zadora.file.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,27 +22,27 @@ public class CarService {
 
     @Autowired
     private CarDAO carDAO;
+    @Autowired
+    private PhotoDAO photoDAO;
 
-//    @CrossOrigin
-//    @PostMapping("/save-cars")
-//    public Car saveCar(@RequestParam(value="vin")String vin, @RequestParam(value="make")String make
-//            , @RequestParam(value="model")String model, @RequestParam(value="year")Integer year
-//            , @RequestParam(value="price")Float price, @RequestParam(value="visible", defaultValue = "true")Boolean visible){
-//        Car car = new Car(vin, make, model, year, price, visible);
-//        carDAO.add(car);
-//        return car;
-//    }
+    @CrossOrigin
+    @PostMapping("/car/add")
+    public Car saveCar(@RequestBody Car car){
+        carDAO.add(car);
+        return car;
+    }
 
     @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/save-car")
-    public void saveCar(@RequestBody List<MultipartFile> files) throws IOException {
-        System.out.println(files);
+    @PostMapping("/car/pictures/add")
+    public void saveCar(@RequestBody List<MultipartFile> files, @RequestParam String car) throws IOException {
+        System.out.println(car);
         for(MultipartFile file : files){
-            File filePath = new File(".\\photos");
+            File filePath = new File(".\\build\\resources\\main\\static\\" + car);
+            System.out.println(filePath.mkdirs());
             FileSaver.saveFile(file, filePath);
+            photoDAO.add(new Photo(carDAO.getById(Long.parseLong(car)), car + "/" + file.getOriginalFilename(), file.getOriginalFilename()));
         }
-        System.out.println("FILE ========== \n");
     }
 
     @RequestMapping("/car/remove")
